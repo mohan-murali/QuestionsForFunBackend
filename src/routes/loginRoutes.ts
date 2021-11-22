@@ -11,7 +11,7 @@ const router = Router();
 const JWT_KEY = process.env.JWT_KEY || "";
 console.log("the jwt secret is", JWT_KEY);
 
-interface RequestWithBody extends Request {
+export interface RequestWithBody extends Request {
   body: { [key: string]: string | undefined };
 }
 
@@ -32,88 +32,17 @@ router.get("/protected", authHandler, (req: Request, res: Response) => {
   res.send("welcome to the protected route");
 });
 
-router.get("/login", (req: Request, res: Response) => {
-  res.send(`
-    <form method="POST">
-      <div>
-        <label>Email</label>
-        <input name="email" />
-      </div>
-      <div>
-        <label>Password</label>
-        <input name="password" type="password" />
-      </div>
-      <button>Submit</button>
-    </form>
-  `);
-});
-
-router.get("/signUp", (req: Request, res: Response) => {
-  res.send(`
-    <form method="POST">
-      <div>
-        <label>Name</label>
-        <input name="name" />
-      </div>
-      <div>
-        <label>Email</label>
-        <input name="email" />
-      </div>
-      <div>
-        <label>Password</label>
-        <input name="password" type="password" />
-      </div>
-      <button>Submit</button>
-    </form>
-  `);
-});
-
-/**
- * @swagger
- * /signUp:
- *  post:
- *    summary: allow users to create new login
- *    requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 description: The users name
- *                 example : Fizz buzz
- *               email:
- *                 type: string
- *                 description: The user's email.
- *                 example: fizzbuzz@mail.com
- *               password:
- *                 type: string
- *                 description: the user's password
- *    responses:
- *      200:
- *        description: Ok
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                success:
- *                  type: boolean
- *                message:
- *                  type: string
- */
 router.post("/signUp", async (req: RequestWithBody, res: Response) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, type } = req.body;
 
-    if (name && email && password) {
+    if (name && email && password && type) {
       //Check if the email and password is correct
       const user: User = {
         name,
         email,
         password,
+        type,
       };
 
       let userCheck = await UserModel.findOne({ email: email });
@@ -130,13 +59,18 @@ router.post("/signUp", async (req: RequestWithBody, res: Response) => {
       newUser = await newUser.save();
 
       res.status(200).json({
+        user: {
+          name: newUser.name,
+          email: newUser.email,
+          type: newUser.type,
+        },
         success: true,
         message: "user created successfully",
       });
     } else
       res.status(400).json({
         success: false,
-        message: "You need to send name, email and password",
+        message: "You need to send name, email, password and type",
       });
   } catch (err) {
     res.status(500).json({
@@ -146,47 +80,6 @@ router.post("/signUp", async (req: RequestWithBody, res: Response) => {
   }
 });
 
-/**
- * @swagger
- * /login:
- *  post:
- *    summary: Validate and login user
- *    requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 description: The user's email.
- *                 example: fizzbuzz@mail.com
- *               password:
- *                 type: string
- *                 description: the user's password
- *    responses:
- *      200:
- *        description: Ok
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                success:
- *                  type: boolean
- *                token:
- *                  type: string
- *                user:
- *                  type: object
- *                  properties:
- *                    id:
- *                     type: integer
- *                    name:
- *                      type: string
- *                    email:
- *                      type: string
- */
 router.post("/login", async (req: RequestWithBody, res: Response) => {
   try {
     const { email, password } = req.body;

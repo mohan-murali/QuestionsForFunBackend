@@ -5,6 +5,7 @@ export interface User {
   email: string;
   password: string;
   date?: Date;
+  type: string;
 }
 
 const userSchema = new Schema<User>({
@@ -18,6 +19,10 @@ const userSchema = new Schema<User>({
     unique: true,
   },
   password: {
+    type: String,
+    required: true,
+  },
+  type: {
     type: String,
     required: true,
   },

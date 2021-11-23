@@ -9,7 +9,6 @@ dotenv.config();
 
 const router = Router();
 const JWT_KEY = process.env.JWT_KEY || "";
-console.log("the jwt secret is", JWT_KEY);
 
 export interface RequestWithBody extends Request {
   body: { [key: string]: string | undefined };
@@ -29,6 +28,7 @@ router.get("/logout", (req: Request, res: Response) => {
 });
 
 router.get("/protected", authHandler, (req: Request, res: Response) => {
+  console.log(req.user);
   res.send("welcome to the protected route");
 });
 

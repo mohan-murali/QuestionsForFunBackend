@@ -16,4 +16,4 @@ Content-Type: application/json
 ### Access test auth route with JWT
 GET http://localhost:5000/protected HTTP/1.1
 Content-Type: application/json
-X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc1OTAzNDgsImV4cCI6MTYzNzY3Njc0OH0.19R9M8IJjg7cF3Q4dDDON8l2TGpBlfGOr324BRpkqIk
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc2Nzg1OTQsImV4cCI6MTYzNzc2NDk5NH0.z5EP39FEiEpQt4rcndYoXleTpsmALj9UlRlxBxehS5o

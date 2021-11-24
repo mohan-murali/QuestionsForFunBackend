@@ -12,12 +12,12 @@ export interface Question {
 }
 
 export interface Test {
-  user: string;
+  email: string;
   questions: Question[];
 }
 
 const testSchema = new Schema<Test>({
-  user: {
+  email: {
     type: String,
     required: true,
   },

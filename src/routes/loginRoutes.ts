@@ -7,14 +7,15 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const router = Router();
+const loginRouter = Router();
 const JWT_KEY = process.env.JWT_KEY || "";
 
 export interface RequestWithBody extends Request {
+  [x: string]: any;
   body: { [key: string]: string | undefined };
 }
 
-router.get("/", (req: Request, res: Response) => {
+loginRouter.get("/", (req: Request, res: Response) => {
   if (req.session?.loggedIn) {
     res.send("you are logged In");
   } else {
@@ -22,17 +23,21 @@ router.get("/", (req: Request, res: Response) => {
   }
 });
 
-router.get("/logout", (req: Request, res: Response) => {
+loginRouter.get("/logout", (req: Request, res: Response) => {
   req.session = undefined;
   res.redirect("/");
 });
 
-router.get("/protected", authHandler, (req: Request, res: Response) => {
-  console.log(req.user);
-  res.send("welcome to the protected route");
-});
+loginRouter.get(
+  "/protected",
+  authHandler,
+  (req: RequestWithBody, res: Response) => {
+    console.log(req.user);
+    res.send("welcome to the protected route");
+  }
+);
 
-router.post("/signUp", async (req: RequestWithBody, res: Response) => {
+loginRouter.post("/signUp", async (req: RequestWithBody, res: Response) => {
   try {
     const { name, email, password, type } = req.body;
 
@@ -80,7 +85,7 @@ router.post("/signUp", async (req: RequestWithBody, res: Response) => {
   }
 });
 
-router.post("/login", async (req: RequestWithBody, res: Response) => {
+loginRouter.post("/login", async (req: RequestWithBody, res: Response) => {
   try {
     const { email, password } = req.body;
 
@@ -128,4 +133,4 @@ router.post("/login", async (req: RequestWithBody, res: Response) => {
   }
 });
 
-export { router };
+export { loginRouter };

@@ -16,4 +16,23 @@ Content-Type: application/json
 ### Access test auth route with JWT
 GET http://localhost:5000/protected HTTP/1.1
 Content-Type: application/json
-X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc1OTAzNDgsImV4cCI6MTYzNzY3Njc0OH0.19R9M8IJjg7cF3Q4dDDON8l2TGpBlfGOr324BRpkqIk
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc3NjI3NjIsImV4cCI6MTYzNzg0OTE2Mn0.s1w5hp2f6W87osgOmPt4t6qM-6rXO9Nbl612W2KjY2E
+
+
+### Create a test object
+POST http://localhost:5000/test
+Content-Type: application/json
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc3NjI3NjIsImV4cCI6MTYzNzg0OTE2Mn0.s1w5hp2f6W87osgOmPt4t6qM-6rXO9Nbl612W2KjY2E
+
+{
+    "questions": [
+       { "question": "what is the x",
+            "options":[
+                {"id": 1, "value": "this is a test"}
+            ],
+            "correctAnswerId": "1"
+
+       }
+
+    ]
+}

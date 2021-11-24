@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import { errorHander, routeNotFoundHander } from "./middleware";
-import { router } from "./routes";
+import { loginRouter, testRouter } from "./routes";
 import { connectDB } from "./config";
 
 //Create the epress app
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(cookieSession({ keys: ["laskdjf"] }));
-app.use(router);
+app.use(loginRouter, testRouter);
 
 //register middlewares to handle server side errors.
 app.use(errorHander);

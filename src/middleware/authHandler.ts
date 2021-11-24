@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { UserModel } from "../models/user";
 
-export const authHandler = (
+export const authHandler = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -19,7 +20,10 @@ export const authHandler = (
 
   // Verify token
   try {
-    jwt.verify(token, JWT_KEY);
+    const usr = jwt.verify(token, JWT_KEY) as any;
+    const user = await UserModel.findById(usr.userId);
+    //@ts-ignore
+    req.user = user;
     next();
   } catch (err) {
     res.status(401).json({ msg: "Token invalid." });

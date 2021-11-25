@@ -43,13 +43,7 @@ const loginRouter = (0, express_1.Router)();
 exports.loginRouter = loginRouter;
 const JWT_KEY = process.env.JWT_KEY || "";
 loginRouter.get("/", (req, res) => {
-    var _a;
-    if ((_a = req.session) === null || _a === void 0 ? void 0 : _a.loggedIn) {
-        res.send("you are logged In");
-    }
-    else {
-        res.send("you are not logged In");
-    }
+    res.send("you have been logged in");
 });
 loginRouter.get("/logout", (req, res) => {
     req.session = undefined;

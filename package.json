@@ -8,7 +8,7 @@
     "postinstall": "tsc",
     "watch-node": "nodemon build/index.js",
     "watch-ts": "tsc -w",
-    "deploy": "git add . && git commit -m Heroku && git push heroku master"
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "engines": {
     "node": "16.13.0"

@@ -1,11 +1,11 @@
 ###Sign up request
-POST http://localhost:5000/signup
+POST https://still-forest-97129.herokuapp.com/signup
 Content-Type: application/x-www-form-urlencoded
 
 name=mohan-test&email=mohantest@gmail.com&password=password-1&type=admin
 
 ###Login request
-POST http://localhost:5000/login
+POST https://still-forest-97129.herokuapp.com/login
 Content-Type: application/json
 
 {
@@ -14,13 +14,13 @@ Content-Type: application/json
 }
 
 ### Access test auth route with JWT
-GET http://localhost:5000/protected HTTP/1.1
+GET https://still-forest-97129.herokuapp.com/protected HTTP/1.1
 Content-Type: application/json
-X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NDg5NzksImV4cCI6MTYzNzkzNTM3OX0.btr2wxk85cs2GZD0sYRVy42j-brEfxKoJk4Rmf0qTY0
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NTQ1NzEsImV4cCI6MTYzNzk0MDk3MX0.PEoWkYbqZEK02NF4quETjFtwmove4dgqcVtnax3THS8
 
 
 ### Create a test object
-POST http://localhost:5000/test
+POST https://still-forest-97129.herokuapp.com/test
 Content-Type: application/json
 X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NDg5NzksImV4cCI6MTYzNzkzNTM3OX0.btr2wxk85cs2GZD0sYRVy42j-brEfxKoJk4Rmf0qTY0
 
@@ -38,5 +38,5 @@ X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlO
 }
 
 ### Test getting the test object
-GET http://localhost:5000/test/619e4c028f38a4da861277f4
-X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NDg5NzksImV4cCI6MTYzNzkzNTM3OX0.btr2wxk85cs2GZD0sYRVy42j-brEfxKoJk4Rmf0qTY0
+GET https://still-forest-97129.herokuapp.com/test/619e4c028f38a4da861277f4
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NTQ1NzEsImV4cCI6MTYzNzk0MDk3MX0.PEoWkYbqZEK02NF4quETjFtwmove4dgqcVtnax3THS8

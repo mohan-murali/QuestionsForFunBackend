@@ -16,11 +16,7 @@ export interface RequestWithBody extends Request {
 }
 
 loginRouter.get("/", (req: Request, res: Response) => {
-  if (req.session?.loggedIn) {
-    res.send("you are logged In");
-  } else {
-    res.send("you are not logged In");
-  }
+  res.send("you have been logged in");
 });
 
 loginRouter.get("/logout", (req: Request, res: Response) => {

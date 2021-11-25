@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:build": "tsc -w",
-    "start:run": "nodemon build/index.js",
-    "start": "concurrently npm:start:*"
+    "start": "node build/index.js",
+    "postinstall": "tsc",
+    "watch-node": "nodemon build/index.js",
+    "watch-ts": "tsc -w",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
+  },
+  "engines": {
+    "node": "16.13.0"
   },
   "keywords": [],
   "author": "",

@@ -24,6 +24,7 @@ testRouter.post(
       newTest = await newTest.save();
 
       res.status(200).json({
+        testId: newTest._id,
         success: true,
         message: "Test saved successfully",
       });
@@ -31,6 +32,35 @@ testRouter.post(
       res.status(500).json({
         success: false,
         message: "Failed to save test",
+      });
+    }
+  }
+);
+
+testRouter.get(
+  "/test/:testId",
+  authHandler,
+  async (req: RequestWithBody, res: Response) => {
+    try {
+      const { testId } = req.params;
+      const test = await TestModel.findById(testId);
+
+      if (test) {
+        res.status(200).json({
+          test: test,
+          success: true,
+          message: "Test retrieved successfully",
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: `the test with the given id: ${testId} was not found`,
+        });
+      }
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: "Failed to fetch the test data",
       });
     }
   }

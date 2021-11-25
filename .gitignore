@@ -3,8 +3,5 @@
 # dependencies
 /node_modules
 
-#build
-/build
-
 #environment variables
 .env

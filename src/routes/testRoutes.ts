@@ -31,7 +31,7 @@ testRouter.post(
     } catch (err) {
       res.status(500).json({
         success: false,
-        message: "Failed to save test",
+        message: `Failed to save test, error -> ${err}`,
       });
     }
   }
@@ -60,7 +60,7 @@ testRouter.get(
     } catch (err) {
       res.status(500).json({
         success: false,
-        message: "Failed to fetch the test data",
+        message: `Failed to fetch the test data, error -> ${err}`,
       });
     }
   }

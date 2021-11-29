@@ -59,12 +59,17 @@ loginRouter.post("/signUp", async (req: RequestWithBody, res: Response) => {
       newUser.password = await bcrypt.hash(newUser.password, salt);
       newUser = await newUser.save();
 
+      const token = jwt.sign({ userId: newUser._id }, JWT_KEY, {
+        expiresIn: "24h",
+      });
+
       res.status(200).json({
         user: {
           name: newUser.name,
           email: newUser.email,
           type: newUser.type,
         },
+        token,
         success: true,
         message: "user created successfully",
       });
@@ -76,7 +81,7 @@ loginRouter.post("/signUp", async (req: RequestWithBody, res: Response) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "cannot retrieve user",
+      message: `cannot retrieve user, error: ${err}`,
     });
   }
 });
@@ -124,7 +129,7 @@ loginRouter.post("/login", async (req: RequestWithBody, res: Response) => {
     console.error(err);
     res.status(500).json({
       success: false,
-      message: "cannot retrieve user",
+      message: `cannot retrieve user, error: ${err}`,
     });
   }
 });

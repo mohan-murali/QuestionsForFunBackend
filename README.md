@@ -1,12 +1,12 @@
-# Typescript-Express-Starter
-Basic configuration for express app with typescript. This app has following built in support
+# Backend for Questions For Fun 
+App serves as the backend for my hobby project. The app includes following features
+- Signup new user
+- Authenticate the user
+- Save the questions for a test
+- Retrieve questions to make new test
 
-- environment variable
-- mongoDB
-- authentication support and middleware
-- has a default error handling middleware
-- has a default no route found middleware
-- can generate swagger UI using swagger js docs.
+Feature to be added in the future
+- Store the marks of the student of the test
 
 The App currently has the following scripts pre-configured
 

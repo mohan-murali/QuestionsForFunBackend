@@ -75,6 +75,12 @@ loginRouter.post("/signUp", (req, res) => __awaiter(void 0, void 0, void 0, func
             const salt = yield bcrypt_1.default.genSalt(10);
             newUser.password = yield bcrypt_1.default.hash(newUser.password, salt);
             newUser = yield newUser.save();
+            const token = jsonwebtoken_1.default.sign({ userId: newUser._id }, JWT_KEY, {
+                expiresIn: "24h",
+            });
+            res.cookie("ss-token", token, {
+                httpOnly: true,
+            });
             res.status(200).json({
                 user: {
                     name: newUser.name,
@@ -94,7 +100,7 @@ loginRouter.post("/signUp", (req, res) => __awaiter(void 0, void 0, void 0, func
     catch (err) {
         res.status(500).json({
             success: false,
-            message: "cannot retrieve user",
+            message: `cannot retrieve user, error: ${err}`,
         });
     }
 }));
@@ -110,10 +116,12 @@ loginRouter.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, funct
                     const token = jsonwebtoken_1.default.sign({ userId: user._id }, JWT_KEY, {
                         expiresIn: "24h",
                     });
+                    res.cookie("ss-token", token, {
+                        httpOnly: true,
+                    });
                     return res.status(200).json({
                         success: true,
                         user,
-                        token,
                     });
                 }
                 else {
@@ -138,7 +146,7 @@ loginRouter.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, funct
         console.error(err);
         res.status(500).json({
             success: false,
-            message: "cannot retrieve user",
+            message: `cannot retrieve user, error: ${err}`,
         });
     }
 }));

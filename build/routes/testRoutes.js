@@ -55,7 +55,7 @@ testRouter.post("/test", authHandler_1.authHandler, (req, res) => __awaiter(void
     catch (err) {
         res.status(500).json({
             success: false,
-            message: "Failed to save test",
+            message: `Failed to save test, error -> ${err}`,
         });
     }
 }));
@@ -80,7 +80,7 @@ testRouter.get("/test/:testId", authHandler_1.authHandler, (req, res) => __await
     catch (err) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch the test data",
+            message: `Failed to fetch the test data, error -> ${err}`,
         });
     }
 }));

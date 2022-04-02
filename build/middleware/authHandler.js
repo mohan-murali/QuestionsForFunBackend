@@ -19,6 +19,7 @@ const authHandler = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     const JWT_KEY = process.env.JWT_KEY || "";
     //Get token from header
     const token = req.header("x-auth-token");
+    console.log(req.cookies);
     //Check if token is present
     if (!token) {
         return res

@@ -29,8 +29,10 @@ const cookie_session_1 = __importDefault(require("cookie-session"));
 const middleware_1 = require("./middleware");
 const routes_1 = require("./routes");
 const config_1 = require("./config");
+const cookieParser = require("cookie-parser");
 //Create the epress app
 const app = (0, express_1.default)();
+app.use(cookieParser());
 //Configure the dotenv package so that we can use env variables accross the app
 dotenv.config();
 //connect mongo DB

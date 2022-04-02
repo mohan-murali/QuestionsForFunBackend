@@ -63,13 +63,16 @@ loginRouter.post("/signUp", async (req: RequestWithBody, res: Response) => {
         expiresIn: "24h",
       });
 
+      res.cookie("ss-token", token, {
+        httpOnly: true,
+      });
+
       res.status(200).json({
         user: {
           name: newUser.name,
           email: newUser.email,
           type: newUser.type,
         },
-        token,
         success: true,
         message: "user created successfully",
       });
@@ -104,10 +107,13 @@ loginRouter.post("/login", async (req: RequestWithBody, res: Response) => {
             expiresIn: "24h",
           });
 
+          res.cookie("ss-token", token, {
+            httpOnly: true,
+          });
+
           return res.status(200).json({
             success: true,
             user,
-            token,
           });
         } else {
           return res.status(403).json({

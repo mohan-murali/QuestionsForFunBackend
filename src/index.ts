@@ -5,9 +5,11 @@ import cookieSession from "cookie-session";
 import { errorHander, routeNotFoundHander } from "./middleware";
 import { loginRouter, testRouter } from "./routes";
 import { connectDB } from "./config";
+const cookieParser = require("cookie-parser");
 
 //Create the epress app
 const app = express();
+app.use(cookieParser());
 
 //Configure the dotenv package so that we can use env variables accross the app
 dotenv.config();

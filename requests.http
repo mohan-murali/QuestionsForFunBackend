@@ -1,11 +1,11 @@
 ###Sign up request
-POST https://still-forest-97129.herokuapp.com/signup
+POST http://localhost:5000/signup
 Content-Type: application/x-www-form-urlencoded
 
 name=mohan-test&email=mohantest@gmail.com&password=password-1&type=admin
 
 ###Login request
-POST https://still-forest-97129.herokuapp.com/login
+POST http://localhost:5000/login
 Content-Type: application/json
 
 {
@@ -22,20 +22,9 @@ X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlO
 ### Create a test object
 POST https://still-forest-97129.herokuapp.com/test
 Content-Type: application/json
-X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzc4NDg5NzksImV4cCI6MTYzNzkzNTM3OX0.btr2wxk85cs2GZD0sYRVy42j-brEfxKoJk4Rmf0qTY0
+X-Auth-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTliYTM4N2NlOTg5ZTRiZTFlMmM5YjEiLCJpYXQiOjE2Mzk0NjQ4NzEsImV4cCI6MTYzOTU1MTI3MX0.jcLY3DvODhmgp8C1P_NfebV0HQRNQs-L5cqEpLMolE4
 
-{
-    "questions": [
-       { "question": "what is the x",
-            "options":[
-                {"id": 1, "value": "this is a test"}
-            ],
-            "correctAnswerId": "1"
-
-       }
-
-    ]
-}
+{"questions":[{"question":"What is the capital of India","options":[{"id":1,"value":"Brunes Aires"},{"id":2,"value":"Katmando"},{"id":3,"value":"Delhi"},{"id":4,"value":"Washington DC"}],"correctAnswerId":3},{"question":"Which Animal is called the king of the Jungle","options":[{"id":1,"value":"Elephant"},{"id":2,"value":"Blue Whale"},{"id":3,"value":"Wolf"},{"id":4,"value":"Lion"}],"correctAnswerId":4},{"question":"Which Company recently Acquired GitHub","options":[{"id":1,"value":"Microsoft"},{"id":2,"value":"Toyota Motors"},{"id":3,"value":"Walt Disney Studio"},{"id":4,"value":"Steel Series"}],"correctAnswerId":1}]}
 
 ### Test getting the test object
 GET https://still-forest-97129.herokuapp.com/test/619e4c028f38a4da861277f4

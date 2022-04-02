@@ -10,6 +10,7 @@ export const authHandler = async (
   const JWT_KEY = process.env.JWT_KEY || "";
   //Get token from header
   const token = req.header("x-auth-token");
+  console.log(req.cookies);
 
   //Check if token is present
   if (!token) {
